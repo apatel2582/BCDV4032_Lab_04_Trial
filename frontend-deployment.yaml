@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockerethfrontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockerethfrontend
+  template:
+    metadata:
+      labels:
+        app: dockerethfrontend
+    spec:
+      containers:
+        - name: frontend
+          image: chargaoshou/dockethfrontend:v2
+          resources:
+            limits:
+              cpu: "500m" # 500 millicores
+              memory: "500Mi"
+          ports:
+            - containerPort: 80
